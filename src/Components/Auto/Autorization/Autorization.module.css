@@ -1,0 +1,16 @@
+.input{
+    width: 90%;
+    height: 30px;
+    padding: 2px 10px;
+}
+
+.colum{
+    gap: 2px;
+}
+.colum p{
+    margin: 3px 0;
+}
+.h2{
+    font-size: 30px;
+    color: #677C55;
+}

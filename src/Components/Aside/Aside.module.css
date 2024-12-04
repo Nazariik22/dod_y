@@ -1,0 +1,23 @@
+.wrapper{
+    display: flex;
+    width: 100%;
+}
+.wrapper main{
+    width: 100%;
+    min-height: 100vh;
+    margin-left:250px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.aside{
+    background: #A2B568;
+    width: 250px;
+    height: 100vh;
+    position: fixed; top: 0;left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 20px ;
+}

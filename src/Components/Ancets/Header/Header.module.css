@@ -1,0 +1,33 @@
+.main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+.main h2{
+    letter-spacing: 3px;
+    color: #475A29;
+}
+.main input{
+    padding: 10px 20px;
+    border: none;
+    background: #afafaf70;
+    border-radius: 5px;
+}
+.main img{
+    height: 30px;
+    cursor: pointer;
+    transition: all .3s linear;
+}
+.main img:hover{
+    filter: hue-rotate(45deg);
+}
+.main img:active{
+    scale: .85;
+}
+.main select{
+  padding: 10px 20px;
+  background: #a2b568bb;
+  border: none;
+  letter-spacing: 2px;
+}
