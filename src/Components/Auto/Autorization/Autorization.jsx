@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";  
+import React, { useState} from "react";  
 import style from './Autorization.module.css';  
 import { useDispatch, useSelector } from "react-redux";  
-import { autoAC, redirectUserAC } from "../../../Redux/personReduser";  
+import { autoAC} from "../../../Redux/personReduser";  
 import { useNavigate } from 'react-router-dom';  
 import imglogin from './../../../img/login.png'
 import imgPassword from './../../../img/password.webp'
