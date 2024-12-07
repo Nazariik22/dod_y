@@ -1,5 +1,5 @@
 const CREATE = 'CREATE'
-const UPPDATE = 'UPPDATE'
+const UPDATE = 'UPPDATE'
 const DELETE = 'DELETE'
 const initialState = [
     {
@@ -138,34 +138,29 @@ const initialState = [
 ]
 
 
-const ancetsReduser = (state = initialState, action) => {
-    switch (action.type) {
-        case CREATE:
-            return [
-                ...state,
-                action.data
-            ]
-        case UPPDATE:
-            return state.map(item => {
-                if (item.id === action.id) {
-                    return {
-                        ...item,
-                        ...action.data
-                    }
-                } else {
-                    return item
-                }
-            })
-        case DELETE:
-            return state.filter(item => {
-                if (item.id !== action.id && item.idUser !== action.idUser) {
-                    return item
-                }
-            }
-            )
-        default:
-            return state
-    }
+const ancetsReduser = (state = initialState, action) => {  
+    switch (action.type) {  
+        case CREATE:  
+            return [  
+                ...state,  
+                action.data  
+            ]  
+        case UPDATE:  
+            return state.map(item => {  
+                if (item.id === action.id) {  
+                    return {  
+                        ...item,  
+                        ...action.data  
+                    }  
+                } else {  
+                    return item  
+                }  
+            })  
+        case DELETE:  
+            return state.filter(item => item.id !== action.id && item.idUser !== action.idUser)  
+        default:  
+            return state  
+    }  
 }
 
 const createAncetsAC = (data) => ({
