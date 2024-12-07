@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import style from './Ancet.module.css'
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { deleteAncetsAC } from "../../Redux/AncetReduser";
 import { Modal } from './Modal/Modal'
+import { useSelector } from "react-redux";
 const Ancet = (props) => {
     const [modal, setModal] = useState(false);
-
-    const dispatch = useDispatch();
-    const hendletDelete = () => {
-        dispatch(deleteAncetsAC(props.state.id, props.state.idUser))
-    }
+    const user = useSelector(state=>state.users).filter(item=>item.id ===props?.state?.idUser)[0]
+   
     return (
         <div className={style.main}>
-            {modal && <Modal close={setModal} />}
+            {modal && <Modal close={setModal} tel = {user.tel} />}
             <NavLink to='/ancets' className='button' > Повернутися назад</NavLink>
             <section>
                 <img src={props.state?.img} alt="" />
@@ -33,7 +29,7 @@ const Ancet = (props) => {
 
                     <>
                         <button>Оновити</button>
-                        <button onClick={() => hendletDelete()}>Видалити</button>
+                        <button onClick={() => props.hendletDelete()}>Видалити</button>
                     </>
                     :
                     <button onClick={() => setModal(true)}>Зв'язатися</button>

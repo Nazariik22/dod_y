@@ -3,12 +3,21 @@ const UPPDATE = 'UPPDATE'
 const initialState = [
     {
         city: "Броди",
-        lastname: "Крутяк",
+        lastname: "Адамович",
         login: "111",
-        name: "Назарій",
+        name: "Юлія",
         password: "111",
-        tel: "+380966495",
+        tel: "+38096649500",
         id: 1,
+    },
+    {
+        city: "Броди",
+        lastname: "Федякова",
+        login: "111",
+        name: "Ірина",
+        password: "222",
+        tel: "+3809664334595",
+        id: 2,
     }
 ]
 
