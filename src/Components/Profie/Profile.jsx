@@ -12,7 +12,7 @@ const Profile = (props) => {
                 {!info ?
                     <>
                         <p>{props.user.login}</p>
-                        <p>{props.user.password}</p>
+                        {/*<p>{props.user.password}</p>*/}
                         <p>{props.user.tel}</p>
                         <p>{props.user.city}</p>
                     </>
@@ -30,10 +30,10 @@ const Profile = (props) => {
                         <input className={style.input}
                             onChange={(e) => props.hendlerInput(e.target.value, 'login')}
                             value={props.user.login} type="text" placeholder="Логін" />
-                        <p>Пароль</p>
-                        <input className={style.input}
+                        {/*<p>Пароль</p>*/}
+                        {/*<input className={style.input}
                             onChange={(e) => props.hendlerInput(e.target.value, 'password')}
-                            value={props.user.password} type="text" placeholder="Пароль" />
+                            value={props.user.password} type="text" placeholder="Пароль" />*/}
                         <p>Місто проживання</p>
                         <input className={style.input}
                             onChange={(e) => props.hendlerInput(e.target.value, 'city')}

@@ -20,4 +20,4 @@ const createAncetsAC = (data) => ({
     data: data,
 })
 
-export { ancetsReduser, createAncetsAC, deleteAncetsAC }
+export { ancetsReduser, createAncetsAC }
