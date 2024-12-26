@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import style from './Ancet.module.css'
 
 const Ancet = (props) => {
-
     return (
         <div className={style.blok}>
             <img src={props.img} alt="" />

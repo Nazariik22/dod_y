@@ -1,16 +1,14 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { CreateAncets } from "./CreateAncets";
-import { createAncetsAC } from "../../Redux/AncetReduser";
 import imageCompression from "browser-image-compression";
-
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 const ContainerCreateAncets = () => {
-    const user_id = useSelector(state => state.person.id);
+    const user_id = useSelector(state => state.person._id);
     const params = useParams().d;
     const [ancet, setAncet] = useState({
-        id: null,
-        idUser: null,
+        idUser: user_id,
         alias: null,
         allergy: null,
         age: null,
@@ -18,11 +16,9 @@ const ContainerCreateAncets = () => {
         vaccinations: null,
         c: null,
         city: null,
-        img: null,
+        img: 'null',
         description: null,
     })
-    const dispatch = useDispatch();
-
     const hendlerInput = async (data, action) => {
         switch (action) {
             case 'alias':
@@ -41,7 +37,7 @@ const ContainerCreateAncets = () => {
                 setAncet({ ...ancet, breed: data })
                 break;
             case 'vaccinations':
-                setAncet({ ...ancet, v: data })
+                setAncet({ ...ancet, vaccinations: data })
                 break;
             case 'c':
                 setAncet({ ...ancet, c: data })
@@ -67,32 +63,32 @@ const ContainerCreateAncets = () => {
                 break;
         }
     }
-    const countAncets = useSelector(state => state.ancets).length - 1;
-    const maxLenghtAncets = useSelector(state => state.ancets)[countAncets];
-    const addAncet = () => {
-        if (ancet.alias && ancet.age && ancet.allergy && ancet.city && ancet.c && ancet.breed && ancet.img){
-            setAncet({ ...ancet, idUser: user_id })
-            setAncet({ ...ancet, id: maxLenghtAncets + 1 })
-            dispatch(createAncetsAC(ancet))
-            setAncet({
-                id: null,
-                idUser: null,
-                alias: '',
-                allergy: '',
-                age: '',
-                breed: '',
-                vaccinations: '',
-                c: '',
-                city: '',
-                img: null,
-                description: '',
-            })
-        }else{
-            alert('заповніть усі поля перед створенням анкети!')
-        }
+    const addAncet = async () => {
+            try {
+                const response = await axios.post(`https://glacial-island-86858-012f45b91779.herokuapp.com/ancet/create`, ancet, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                setAncet({
+                    idUser: user_id,
+                    alias: null,
+                    allergy: null,
+                    age: null,
+                    breed: null,
+                    vaccinations: null,
+                    c: null,
+                    city: null,
+                    img: 'null',
+                    description: null,
+                })
+                alert('Успіх!')
+                
+            } catch (error) {
+                alert('Не вдалося створити анкету. Спробуйте ще раз.');
+            }
         
     }
-
     return <CreateAncets
         url={params}
         hendlerInput={hendlerInput}

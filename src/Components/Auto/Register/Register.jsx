@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import img from './../../../img/logo.png'
+import img from './../../../img/logo.png';
 import { NavLink } from "react-router-dom";
-import style from './../Autorization/Autorization.module.css'
-import { useDispatch } from "react-redux";
-import { createUsers } from "../../../Redux/userReduser";
+import style from './../Autorization/Autorization.module.css';
+import axios from "axios"; 
+
 const Register = () => {
     const [user, setUser] = useState({
         name: "",
@@ -12,45 +12,56 @@ const Register = () => {
         login: "",
         password: "",
         tel: ""
-    })
-    const dispatch = useDispatch();
+    });
+
     const hendlerInput = (data, action) => {
         switch (action) {
             case 'name':
-                setUser({ ...user, name: data })
+                setUser({ ...user, name: data });
                 break;
             case 'lastname':
-                setUser({ ...user, lastname: data })
+                setUser({ ...user, lastname: data });
                 break;
             case 'city':
-                setUser({ ...user, city: data })
+                setUser({ ...user, city: data });
                 break;
             case 'login':
-                setUser({ ...user, login: data })
+                setUser({ ...user, login: data });
                 break;
             case 'password':
-                setUser({ ...user, password: data })
+                setUser({ ...user, password: data });
                 break;
             case 'tel':
-                setUser({ ...user, tel: data })
+                setUser({ ...user, tel: data });
                 break;
             default:
                 break;
         }
     }
-    const addUser = () => {
+    const addUser = async () => {
         if (user.city && user.lastname && user.name && user.login && user.password && user.tel) {
-            dispatch(createUsers(user))
-            setUser({
-                name: "",
-                lastname: "",
-                city: "",
-                login: "",
-                password: "",
-                tel: ""
-            })
+            try {
+                const response = await axios.post('https://glacial-island-86858-012f45b91779.herokuapp.com/user/register', user, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                setUser({
+                    name: "",
+                    lastname: "",
+                    city: "",
+                    login: "",
+                    password: "",
+                    tel: ""
+                });
+            } catch (error) {
+                console.error('Error registering user:', error.response?.data || error.message);
+            }
+        } else {
+            console.error('Please fill in all fields.');
         }
-    }
+    };
+
     return (
         <div>
             <div className="flex">
@@ -83,7 +94,7 @@ const Register = () => {
                 <input className={style.input}
                     onChange={(e) => hendlerInput(e.target.value, 'tel')}
                     value={user.tel} type="text" placeholder="Телефон" />
-                <NavLink to='/auto/login' className='button' onClick={() => addUser()}>Вхід</NavLink>
+                <NavLink to='/auto/login' className='button' onClick={addUser}>Вхід</NavLink>
             </div>
         </div>
     );

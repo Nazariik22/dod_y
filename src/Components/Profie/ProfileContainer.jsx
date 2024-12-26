@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Profile } from './Profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAC } from '../../Redux/personReduser';
-import { updateUsersAC } from '../../Redux/userReduser';
-
+import axios from 'axios';
 const ProfileContainer = () => {
     const users = useSelector(state => state.person);
     const [user, setUser] = useState({
@@ -39,14 +38,17 @@ const ProfileContainer = () => {
                 break;
         }
     }
-    const updateUser = () => {
-        dispatch(updateUserAC(user))
-        dispatch(updateUsersAC(
-            users.id,
-            user))
-
-
-    }
+    const updateUser = async () => {
+        try {
+            const response = await axios.put('https://glacial-island-86858-012f45b91779.herokuapp.com/user', {
+                id: users._id, 
+                ...user,
+            });
+            dispatch(updateUserAC(response.data.user));
+        } catch (error) {  
+            alert('Не вдалося оновити дані. Спробуйте ще раз.');   
+        }
+    }  
     return (
         <Profile
             user={user}
