@@ -46,6 +46,7 @@ const Register = () => {
                         'Content-Type': 'application/json',
                     },
                 });
+                console.log(response);
                 setUser({
                     name: "",
                     lastname: "",

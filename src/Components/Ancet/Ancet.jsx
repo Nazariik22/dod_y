@@ -34,7 +34,7 @@ const Ancet = () => {
     const handleDelete = async () => {
         try {
             const response = await axios.delete(`https://glacial-island-86858-012f45b91779.herokuapp.com/ancet/${id}`);
-            console.log('Анкету успішно видалено:', response.data.message);
+            console.log( response);
             navigate('/ancets'); 
         } catch (error) {
             console.error('Помилка видалення анкети:', error.response?.data || error.message);
@@ -44,7 +44,7 @@ const Ancet = () => {
     useEffect(() => {
         fetchAncet();
         fetchUser();
-    }, [id, idUser]);
+    }, [id, idUser, fetchAncet, fetchUser]);
 
     if (!ancet || !user) {
         return <p>Завантаження...</p>;
