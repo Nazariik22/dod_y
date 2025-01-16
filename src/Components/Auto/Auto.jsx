@@ -13,7 +13,7 @@ const Auto = () => {
                     >Вхід</NavLink>
                     <NavLink to='register'
                         className={url === '/auto/register' && style.active}
-                    >Реєстраія</NavLink>
+                    >Реєстрація</NavLink>
                 </div>
                 <Outlet />
             </div>
