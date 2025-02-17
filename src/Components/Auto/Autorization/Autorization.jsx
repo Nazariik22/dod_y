@@ -58,7 +58,7 @@ const Autorization = () => {
                     checked={yes}
                     onChange={(e) => setYes(e.target.checked)}
                 />
-                <p>Запом'ятати мене</p>
+                <p>Запам'ятати мене</p>
             </div>
             <button
                 className='button'

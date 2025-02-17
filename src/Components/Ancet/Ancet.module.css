@@ -15,3 +15,6 @@
 .button{
     justify-content: flex-end;
 }
+.main img{
+    object-fit: cover;
+}
